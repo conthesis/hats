@@ -107,4 +107,4 @@ func RegisterPrometheusCollectors(collectors... prometheus.Collector) fx.Option 
 		}
 		return nil
 	})
-}z
+}
