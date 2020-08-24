@@ -32,7 +32,7 @@ func (tl *ToggledPrinter) Printf(format string, v ...interface{}){
 	}
 }
 
-func ToggleFxLoggingToZap() fx.Option {
+func toggleFxLoggingToZap() fx.Option {
 	tl := ToggledPrinter{nil}
 	return fx.Options(
 		fx.Logger(&tl),
@@ -40,7 +40,7 @@ func ToggleFxLoggingToZap() fx.Option {
 	)
 }
 
-var LogModule fx.Option = fx.Options(
+var logModule fx.Option = fx.Options(
 	fx.Provide(newZapLogger, newSugaredLogger),
-	ToggleFxLoggingToZap(),
+	toggleFxLoggingToZap(),
 )

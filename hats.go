@@ -10,7 +10,8 @@ import (
 
 var Module = fx.Options(
 	telemetryModule,
-	LogModule,
+	logModule,
+	natsModule,
 	fx.Provide(newViper),
 	fx.Invoke(background),
 )
@@ -25,7 +26,7 @@ func background(_ backgroundInput) {
 }
 
 func RunWithHats(opts ...fx.Option) {
-	added := append(opts, Module, ToggleFxLoggingToZap())
+	added := append(opts, Module, toggleFxLoggingToZap())
 	app := fx.New(added...)
 	app.Run()
 }
