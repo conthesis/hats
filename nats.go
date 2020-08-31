@@ -2,6 +2,8 @@ package hats
 
 import (
 	"context"
+	"fmt"
+	"net/url"
 
 	"github.com/nats-io/nats.go"
 	"github.com/spf13/viper"
@@ -37,9 +39,12 @@ func NewSubjectMap(subjects map[string]nats.MsgHandler) SubjectHandlerOption {
 }
 
 func newNatsConn(in newNatsConnInput) (*nats.Conn, error) {
-	url := in.Viper.GetString("NatsUrl")
-	nc, err := nats.Connect(url)
+	natsUrl := in.Viper.GetString("NatsUrl")
+	nc, err := nats.Connect(natsUrl)
 	if err != nil {
+		if err, ok := err.(*url.Error); ok {
+			return nil, fmt.Errorf("NATS_URL is of an incorrect format: %w", err)
+		}
 		return nil, err
 	}
 	in.Lifecycle.Append(

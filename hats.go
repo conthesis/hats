@@ -19,7 +19,7 @@ var Module = fx.Options(
 type backgroundInput struct {
 	fx.In
 	Server http.Server `name:"telemetryServer"`
-	nats.Conn
+	*nats.Conn
 }
 func background(_ backgroundInput) {
 	return
