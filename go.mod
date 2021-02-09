@@ -8,7 +8,7 @@ require (
 	github.com/prometheus/client_golang v1.7.1
 	github.com/prometheus/common v0.13.0 // indirect
 	github.com/spf13/viper v1.7.1
-	go.uber.org/automaxprocs v1.3.0
+	go.uber.org/automaxprocs v1.4.0
 	go.uber.org/fx v1.13.1
 	go.uber.org/zap v1.15.0
 	golang.org/x/lint v0.0.0-20200302205851-738671d3881b // indirect
